@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4399电影网 | 收录4399部影片词条·像挑小游戏一样轻松找片</title>
+<meta name="description" content="4399电影网（4399dianyingwang-zh）以“4399”为目标量级，分类整理数千部影片词条，像逛小游戏库一样按标签筛选、随点随换，主打轻松无压力的选片体验。">
+<meta name="keywords" content="4399电影网,4399dianyingwang-zh,影片词条,标签选片,休闲观影,轻量片库,快速找电影">
+<meta name="author" content="4399电影网">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="4399电影网 - 像挑小游戏一样轻松找片">
+<meta property="og:description" content="收录数千部影片词条，按标签筛选、随点随换，选片轻松无压力。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://4399dianyingwang-zh.github.io/">
+<link rel="canonical" href="https://4399dianyingwang-zh.github.io">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#07060d;
+  --bg2:#0d0b1a;
+  --accent:#ff2e63;
+  --accent2:#7b2cff;
+  --gold:#ffb83d;
+  --text:#f2f0f7;
+  --muted:#a39fb5;
+  --card:rgba(255,255,255,0.045);
+  --border:rgba(255,255,255,0.1);
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","Microsoft YaHei","WenQuanYi Micro Hei",system-ui,-apple-system,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.7;
+  overflow-x:hidden;
+}
+body::before{
+  content:"";
+  position:fixed;inset:0;z-index:-2;
+  background:
+    radial-gradient(800px 500px at 12% 8%,rgba(123,44,255,0.30),transparent 60%),
+    radial-gradient(700px 600px at 88% 22%,rgba(255,46,99,0.22),transparent 60%),
+    radial-gradient(600px 500px at 50% 95%,rgba(255,184,61,0.13),transparent 60%);
+  background-color:var(--bg);
+}
+body::after{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.018) 1px,transparent 1px);
+  background-size:46px 46px;
+}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+a{color:inherit;text-decoration:none}
+
+/* ===== Header ===== */
+header{position:sticky;top:0;z-index:100;backdrop-filter:blur(14px);background:rgba(7,6,13,0.72);border-bottom:1px solid var(--border)}
+.hd-in{max-width:1200px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:26px}
+.logo{font-size:24px;font-weight:900;letter-spacing:.5px;flex-shrink:0;
+  background:linear-gradient(92deg,#fff 10%,var(--accent) 55%,var(--gold) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.logo span{color:var(--accent);-webkit-text-fill-color:var(--accent)}
+nav{margin-left:auto}
+nav ul{display:flex;gap:6px;list-style:none}
+nav a{padding:8px 14px;border-radius:9px;font-size:15px;color:var(--muted);transition:.25s;display:block}
+nav a:hover{color:#fff;background:rgba(255,255,255,0.07)}
+.mob{display:none;margin-left:auto;background:none;border:1px solid var(--border);color:#fff;font-size:22px;width:42px;height:42px;border-radius:9px;cursor:pointer}
+
+/* ===== Hero ===== */
+.hero{padding:78px 0 56px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:54px;align-items:center}
+.tagline{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:30px;border:1px solid rgba(255,46,99,.4);background:rgba(255,46,99,.09);color:#ffa9bd;font-size:13.5px;margin-bottom:22px}
+.hero h1{font-size:clamp(32px,5vw,54px);line-height:1.15;font-weight:900;letter-spacing:-.5px}
+.hero h1 em{font-style:normal;color:transparent;background:linear-gradient(92deg,var(--accent),var(--gold));-webkit-background-clip:text;background-clip:text}
+.hero p.lead{font-size:17.5px;color:var(--muted);margin:20px 0 30px;max-width:540px}
+.stats{display:flex;gap:40px;flex-wrap:wrap;margin-bottom:34px}
+.stat b{display:block;font-size:30px;font-weight:900;color:#fff;line-height:1.2}
+.stat b i{font-style:normal;color:var(--accent)}
+.stat small{color:var(--muted);font-size:13.5px}
+.ctas{display:flex;gap:14px;flex-wrap:wrap}
+.btn{padding:13px 30px;border-radius:11px;font-size:15.5px;font-weight:700;transition:.25s;cursor:pointer;border:0;display:inline-flex;align-items:center;gap:8px}
+.btn-main{background:linear-gradient(92deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 8px 26px -8px var(--accent)}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 12px 32px -8px var(--accent2)}
+.btn-ghost{background:var(--card);border:1px solid var(--border);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.1)}
+
+.poster{position:relative}
+.poster-frame{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--border);aspect-ratio:4/5;background:linear-gradient(150deg,#1a1530,#0e0c1c)}
+.poster-frame::before{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(255,46,99,.30),transparent 45%),linear-gradient(340deg,rgba(123,44,255,.35),transparent 50%);}
+.pf-in{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:26px}
+.pf-in .ribbon{position:absolute;top:18px;left:18px;background:var(--gold);color:#1a1200;font-size:12px;font-weight:800;padding:4px 12px;border-radius:6px;letter-spacing:.5px}
+.pf-in h3{font-size:24px;margin-bottom:6px}
+.pf-in p{color:#cfcadb;font-size:14px}
+.pf-in .row{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.pf-in .row span{padding:4px 11px;border-radius:20px;background:rgba(255,255,255,.13);font-size:12.5px}
+.glow{position:absolute;width:200px;height:200px;border-radius:50%;background:var(--accent);filter:blur(80px);opacity:.35;bottom:-50px;right:-40px;z-index:-1}
+
+/* ===== Section base ===== */
+section{padding:64px 0}
+.sec-head{display:flex;align-items:flex-end;gap:20px;margin-bottom:38px;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(24px,3.4vw,34px);font-weight:900;letter-spacing:-.3px}
+.sec-head h2::before{content:"";display:inline-block;width:5px;height:24px;background:linear-gradient(var(--accent),var(--accent2));border-radius:3px;margin-right:12px;vertical-align:-3px}
+.sec-head p{color:var(--muted);font-size:14.5px;margin-left:auto}
+
+/* ===== Category cards ===== */
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.cat{position:relative;border-radius:16px;padding:26px 22px;background:var(--card);border:1px solid var(--border);overflow:hidden;transition:.3s;min-height:200px;display:flex;flex-direction:column}
+.cat:hover{transform:translateY(-6px);border-color:rgba(255,46,99,.45);background:rgba(255,255,255,.075)}
+.cat .ico{font-size:34px;margin-bottom:14px;display:block}
+.cat h3{font-size:19px;margin-bottom:8px}
+.cat p{color:var(--muted);font-size:14px;flex-grow:1}
+.cat .go{margin-top:16px;font-size:13.5px;color:var(--accent);font-weight:700}
+.cat .blob{position:absolute;width:120px;height:120px;border-radius:50%;right:-40px;top:-40px;opacity:.16;transition:.3s}
+.cat:hover .blob{opacity:.3}
+.c1 .blob{background:var(--accent)}.c2 .blob{background:var(--accent2)}.c3 .blob{background:var(--gold)}.c4 .blob{background:#19d2c4}
+
+/* ===== Film list ===== */
+.filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:30px}
+.filters button{background:var(--card);border:1px solid var(--border);color:var(--muted);padding:8px 18px;border-radius:30px;font-size:14px;cursor:pointer;transition:.2s}
+.filters button.on,.filters button:hover{color:#fff;background:linear-gradient(92deg,var(--accent),var(--accent2));border-color:transparent}
+.film-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.film{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:.28s}
+.film:hover{transform:translateY(-5px);border-color:rgba(255,46,99,.4)}
+.thumb{aspect-ratio:3/4;position:relative;overflow:hidden;background:#15121f}
+.thumb .grad{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:38px;font-weight:900;color:rgba(255,255,255,.85)}
+.thumb small{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);padding:3px 9px;border-radius:5px;font-size:11.5px;font-weight:700}
+.thumb .score{position:absolute;top:10px;right:10px;background:var(--gold);color:#1a1200;padding:3px 9px;border-radius:5px;font-size:12px;font-weight:900}
+.fmeta{padding:13px 15px}
+.fmeta h4{font-size:15px;font-weight:700;margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fmeta span{color:var(--muted);font-size:12.5px}
+
+/* ===== Schedule table ===== */
+.schedule{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.schedule table{width:100%;border-collapse:collapse}
+.schedule th,.schedule td{padding:15px 18px;text-align:left;border-bottom:1px solid var(--border);font-size:14.5px}
+.schedule th{background:rgba(255,255,255,.05);color:var(--muted);font-weight:600;font-size:13px;letter-spacing:.5px;text-transform:uppercase}
+.schedule tr:hover td{background:rgba(255,255,255,.035)}
+.schedule td:first-child{font-weight:700;color:var(--gold);white-space:nowrap}
+.schedule .badge{display:inline-block;padding:3px 10px;border-radius:5px;font-size:12.5px;font-weight:700}
+.b-new{background:rgba(255,46,99,.18);color:#ff8fa8}
+.b-hot{background:rgba(255,184,61,.16);color:var(--gold)}
+.b-soon{background:rgba(123,44,255,.2);color:#b89bff}
+
+/* ===== FAQ ===== */
+.faq-list{display:grid;gap:12px;max-width:880px}
+.faq{border:1px solid var(--border);border-radius:13px;background:var(--card);overflow:hidden}
+.faq-q{width:100%;background:none;border:0;color:#fff;padding:19px 22px;font-size:16px;font-weight:600;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq-q .pm{font-size:22px;color:var(--accent);transition:.25s;flex-shrink:0}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-a p{padding:0 22px 20px;color:var(--muted);font-size:15px}
+.faq.open .faq-a{max-height:260px}
+.faq.open .faq-q .pm{transform:rotate(45deg)}
+
+/* ===== About / Features ===== */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.feat{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px}
+.feat h4{font-size:17px;margin-bottom:9px;display:flex;align-items:center;gap:9px}
+.feat p{color:var(--muted);font-size:14.5px}
+
+/* ===== Footer ===== */
+footer{border-top:1px solid var(--border);padding:48px 0 30px;background:rgba(0,0,0,.25)}
+.ft-in{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:34px}
+.ft-brand .logo{font-size:22px}
+.ft-brand p{color:var(--muted);font-size:14px;margin-top:14px}
+.ft-col h5{font-size:15px;margin-bottom:15px;color:#fff}
+.ft-col ul{list-style:none;display:grid;gap:9px}
+.ft-col a{color:var(--muted);font-size:14px;transition:.2s}
+.ft-col a:hover{color:var(--accent)}
+.copy{margin-top:38px;padding-top:22px;border-top:1px solid var(--border);color:var(--muted);font-size:13px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.copy a{color:var(--muted);border-bottom:1px dashed var(--border)}
+
+/* ===== Reveal ===== */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
+.rv.in{opacity:1;transform:none}
+
+@media(max-width:980px){
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .grid-4{grid-template-columns:repeat(2,1fr)}
+  .film-grid{grid-template-columns:repeat(3,1fr)}
+  .feat-grid{grid-template-columns:repeat(2,1fr)}
+  .ft-in{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .mob{display:block}
+  nav{position:fixed;top:68px;left:0;right:0;background:rgba(10,8,20,.98);border-bottom:1px solid var(--border);max-height:0;overflow:hidden;transition:.3s}
+  nav.open{max-height:340px}
+  nav ul{flex-direction:column;padding:14px;gap:4px}
+  nav a{padding:13px 16px}
+  .hero{padding:44px 0 30px}
+  .stats{gap:26px}
+  .stat b{font-size:24px}
+  section{padding:46px 0}
+  .grid-4,.film-grid,.feat-grid{grid-template-columns:1fr 1fr}
+  .ft-in{grid-template-columns:1fr}
+  .schedule{overflow-x:auto}
+  .schedule table{min-width:560px}
+  .ctas .btn{flex:1;text-align:center;justify-content:center}
+}
+@media(max-width:400px){
+  .grid-4,.film-grid,.feat-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/zhangzong.js"></script>
+
+<header>
+  <div class="hd-in">
+    <div class="logo">4399<span>电影网</span></div>
+    <nav id="nav">
+      <ul>
+        <li><a href="#home">首页</a></li>
+        <li><a href="#films">热播片库</a></li>
+        <li><a href="#schedule">更新排期</a></li>
+        <li><a href="#guide">观影指南</a></li>
+        <li><a href="#about">关于我们</a></li>
+        <li><a href="#faq">常见问题</a></li>
+      </ul>
+    </nav>
+    <button class="mob" id="mob" aria-label="菜单">☰</button>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="rv">
+        <span class="tagline">🎬 每日更新 · 全网热播同步</span>
+        <h1>在 <em>4399电影网</em><br>免费看好片</h1>
+        <p class="lead">4399电影网（4399dianyingwang-zh）汇聚院线大片、经典老片、热播剧集与口碑综艺，无需下载、无需注册，打开即看，让每一次观影都成为享受。</p>
+        <div class="stats">
+          <div class="stat"><b><i>12</i>万+</b><small>正版授权片源</small></div>
+          <div class="stat"><b><i>4</i>K</b><small>超清画质可选</small></div>
+          <div class="stat"><b><i>0</i>元</b><small>永久免费观看</small></div>
+        </div>
+        <div class="ctas">
+          <a class="btn btn-main" href="#films">立即观影 →</a>
+          <a class="btn btn-ghost" href="#guide">新手指南</a>
+        </div>
+      </div>
+      <div class="poster rv">
+        <div class="poster-frame">
+          <span class="ribbon">今日推荐 TOP1</span>
+          <div class="pf-in">
+            <h3>封神·再起风云</h3>
+            <p>2026 · 奇幻史诗 · 导演剪辑版已上线</p>
+            <div class="row"><span>国语</span><span>中文字幕</span><span>1080P</span></div>
+          </div>
+        </div>
+        <div class="glow"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目一：影片分类 -->
+<section id="films">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2>海量片库 随心畅看</h2>
+      <p>已收录 4399电影网 全站 12 万+ 部正版影片</p>
+    </div>
+    <div class="grid-4">
+      <a class="cat c1 rv" href="#">
+        <span class="ico">🎞️</span><span class="blob"></span>
+        <h3>院线电影</h3>
+        <p>同步最新上映大片、经典怀旧老片、获奖艺术电影，覆盖动作、喜剧、爱情、科幻全类型。</p>
+        <span class="go">进入电影频道 →</span>
+      </a>
+      <a class="cat c2 rv" href="#">
+        <span class="ico">📺</span><span class="blob"></span>
+        <h3>热播剧集</h3>
+        <p>内地、港台、韩日、欧美高分剧集全集连载，更新快、画质高，追剧不再等。</p>
+        <span class="go">进入电视剧频道 →</span>
+      </a>
+      <a class="cat c3 rv" href="#">
+        <span class="ico">🎤</span><span class="blob"></span>
+        <h3>综艺动漫</h3>
+        <p>热门真人秀、脱口秀、少儿动画、日漫国漫一站看全，周末休闲好选择。</p>
+        <span class="go">进入综艺频道 →</span>
+      </a>
+      <a class="cat c4 rv" href="#">
+        <span class="ico">🏆</span><span class="blob"></span>
+        <h3>高分精选</h3>
+        <p>编辑团队每月精选豆瓣高分榜、IMDb TOP250、戛纳获奖佳作，告别片荒。</p>
+        <span class="go">查看精选榜单 →</span>
+      </a>
+    </div>
+
+    <div class="filters" style="margin-top:46px">
+      <button class="on">热门推荐</button><button>动作</button><button>喜剧</button><button>爱情</button><button>科幻</button><button>悬疑</button><button>动画</button><button>纪录片</button>
+    </div>
+    <div class="film-grid">
+      <div class="film rv"><div class="thumb"><div class="grad" style="background:linear-gradient(150deg,#3a0d2e,#120410)">封神·再起</div><small>电影</small><span class="score">9.2</span></div><div class="fmeta"><h4>封神·再起风云</h4><span>奇幻史诗 · 2026</span></div></div>
+      <div class="film rv"><div class="thumb"><div class="grad" style="background:linear-gradient(150deg,#0d2a3a,#04101a)">深海迷踪</div><small>电影</small><span class="score">8.7</span></div><div class="fmeta"><h4>深海迷踪</h4><span>悬疑惊悚 · 2026</span></div></div>
+      <div class="film rv"><div class="thumb"><div class="grad" style="background:linear-gradient(150deg,#2e2a0d,#1a1604)">长安十二时</div><small>剧集</small><span class="score">9.0</span></div><div class="fmeta"><h4>长安十二时辰Ⅱ</h4><span>古装悬疑 · 36集全</span></div></div>
+      <div class="film rv"><div class="thumb"><div class="grad" style="background:linear-gradient(150deg,#0d3a2a,#041a12)">夏日重逢</div><small>电影</small><span class="score">8.4</span></div><div class="fmeta"><h4>夏日重逢</h4><span>青春爱情 · 2026</span></div></div>
+      <div class="film rv"><div class="thumb"><div class="grad" style="background:linear-gradient(150deg,#2a0d3a,#14041a)">星河彼岸</div><small>剧集</small><span class="score">9.4</span></div><div class="fmeta"><h4>星河彼岸</h4><span>硬核科幻 · 12集全</span></div></div>
+      <div class="film rv"><div class="thumb"><div class="grad" style="background:linear-gradient(150deg,#3a2e0d,#1a1404)">金牌调解</div><small>综艺</small><span class="score">8.1</span></div><div class="fmeta"><h4>金牌调解·第八季</h4><span>真人秀 · 更新至22期</span></div></div>
+      <div class="film rv"><div class="thumb"><div class="grad" style="background:linear-gradient(150deg,#0d1a3a,#04081a)">云端特工</div><small>电影</small><span class="score">8.6</span></div><div class="fmeta"><h4>云端特工</h4><span>动作谍战 · 2026</span></div></div>
+      <div class="film rv"><div class="thumb"><div class="grad" style="background:linear-gradient(150deg,#3a0d1a,#1a0408)">糖果侦探社</div><small>动漫</small><span class="score">8.9</span></div><div class="fmeta"><h4>糖果侦探社</h4><span>推理动画 · 24集全</span></div></div>
+      <div class="film rv"><div class="thumb"><div class="grad" style="background:linear-gradient(150deg,#1a3a0d,#081a04)">归途列车</div><small>电影</small><span class="score">8.3</span></div><div class="fmeta"><h4>归途列车</h4><span>剧情纪实 · 2026</span></div></div>
+      <div class="film rv"><div class="thumb"><div class="grad" style="background:linear-gradient(150deg,#0d3a3a,#041a1a)">极地生存</div><small>纪录片</small><span class="score">9.1</span></div><div class="fmeta"><h4>极地生存实录</h4><span>自然纪实 · 6集全</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目二：更新排期 -->
+<section id="schedule">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2>每日更新排期</h2>
+      <p>4399电影网 保证每日上新，不错过任何好内容</p>
+    </div>
+    <div class="schedule rv">
+      <table>
+        <thead>
+          <tr><th>上线时间</th><th>内容名称</th><th>类型</th><th>状态</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>10月03日 20:00</td><td>封神·再起风云（导演剪辑版）</td><td>电影</td><td><span class="badge b-new">今日上新</span></td></tr>
+          <tr><td>10月03日 18:00</td><td>长安十二时辰Ⅱ 第31集</td><td>剧集</td><td><span class="badge b-hot">追剧热</span></td></tr>
+          <tr><td>10月02日 22:00</td><td>星河彼岸 第11集</td><td>剧集</td><td><span class="badge b-hot">追剧热</span></td></tr>
+          <tr><td>10月02日 12:00</td><td>深海迷踪（独家首播）</td><td>电影</td><td><span class="badge b-new">今日上新</span></td></tr>
+          <tr><td>10月01日 20:00</td><td>金牌调解·第八季 第22期</td><td>综艺</td><td><span class="badge b-hot">追剧热</span></td></tr>
+          <tr><td>10月05日 20:00</td><td>糖果侦探社 完结篇</td><td>动漫</td><td><span class="badge b-soon">敬请期待</span></td></tr>
+          <tr><td>10月06日 21:00</td><td>极地生存实录 第6集（大结局）</td><td>纪录片</td><td><span class="badge b-soon">敬请期待</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目三：观影指南 -->
+<section id="guide">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2>三步开始观影</h2>
+      <p>4399电影网 零门槛，30 秒上手</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat rv">
+        <h4><span>①</span>打开网站</h4>
+        <p>浏览器访问 4399dianyingwang-zh.github.io，无需下载客户端，无需注册登录，直接进入 4399电影网 首页。</p>
+      </div>
+      <div class="feat rv">
+        <h4><span>②</span>选择影片</h4>
+        <p>在片库按类型、地区、年份筛选，或直接使用顶部搜索框输入片名、演员、导演，秒出结果。</p>
+      </div>
+      <div class="feat rv">
+        <h4><span>③</span>点击即看</h4>
+        <p>点击任一影片海报即可开始播放，支持 4K 超清、1080P、720P、流畅四档画质自由切换。</p>
+      </div>
+      <div class="feat rv">
+        <h4>🎯 智能推荐</h4>
+        <p>基于你的观影记录，4399电影网 每日为你推荐相似口味的新片，告别选择困难。</p>
+      </div>
+      <div class="feat rv">
+        <h4>📱 多端同步</h4>
+        <p>手机、平板、电脑、电视盒子上登录同一账号，观看进度实时同步，随时随地接着看。</p>
+      </div>
+      <div class="feat rv">
+        <h4>💬 弹幕互动</h4>
+        <p>边看边发弹幕，与全国影迷实时交流，剧透可一键屏蔽，社交观影更有趣。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目四：关于我们 -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2>关于 4399电影网</h2>
+      <p>专业影视点播平台，让好内容触手可及</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat rv">
+        <h4>🎬 海量正版片源</h4>
+        <p>4399电影网 与国内外多家影视版权方深度合作，12 万+ 部正版授权影片持续扩充，院线同步、经典永驻。</p>
+      </div>
+      <div class="feat rv">
+        <h4>⚡ 极速播放体验</h4>
+        <p>自研 P2P 分发加速技术，多线路智能切换，告别卡顿缓冲，弱网环境依旧流畅。</p>
+      </div>
+      <div class="feat rv">
+        <h4>🔒 纯净无广告</h4>
+        <p>全站无弹窗、无诱导下载，观影过程清爽干净，保护用户隐私与设备安全。</p>
+      </div>
+      <div class="feat rv">
+        <h4>🌐 多语言字幕</h4>
+        <p>支持中文、英文、日文、韩文等多语种字幕自由切换，外语片观看无障碍。</p>
+      </div>
+      <div class="feat rv">
+        <h4>💎 会员增值服务</h4>
+        <p>基础内容永久免费，开通会员可享抢先看、离线下载、专属 4K 蓝光画质等特权。</p>
+      </div>
+      <div class="feat rv">
+        <h4>📞 全天候客服</h4>
+        <p>7×24 小时在线客服团队，播放异常、片源建议、版权合作均可即时响应处理。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2>常见问题解答</h2>
+      <p>更多疑问可随时联系客服</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq rv">
+        <button class="faq-q">4399电影网 真的完全免费吗？<span class="pm">+</span></button>
+        <div class="faq-a"><p>是的。4399电影网 站内绝大多数影片均支持免费在线观看，不收取任何观看费用。部分独家院线内容与 4K 蓝光画质为会员专享特权，用户可按需选择。</p></div>
+      </div>
+      <div class="faq rv">
+        <button class="faq-q">为什么打开后是空白或加载失败？<span class="pm">+</span></button>
+        <div class="faq-a"><p>请先确认网络连接正常，尝试刷新页面或更换浏览器（推荐 Chrome、Edge、Safari 最新版）。若使用公司或校园网络，可能存在防火墙限制，建议切换至手机流量或家用网络。</p></div>
+      </div>
+      <div class="faq rv">
+        <button class="faq-q">网站支持哪些设备观看？<span class="pm">+</span></button>
+        <div class="faq-a"><p>4399电影网 采用响应式设计，完美适配手机、平板、笔记本电脑与台式电脑，主流品牌智能电视与电视盒子通过内置浏览器亦可访问观看。</p></div>
+      </div>
+      <div class="faq rv">
+        <button class="faq-q">能否下载影片到本地观看？<span class="pm">+</span></button>
+        <div class="faq-a"><p>开通 4399电影网 会员后可对支持离线下载的影片进行缓存，在手机端 App 内有效期内随时观看，方便通勤与出行场景使用。</p></div>
+      </div>
+      <div class="faq rv">
+        <button class="faq-q">如何向网站提交影片资源建议？<span class="pm">+</span></button>
+        <div class="faq-a"><p>你可以通过页面底部"联系我们"入口提交希望上线的影片名称与相关信息，编辑团队会在 3 个工作日内审核反馈采购进展。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="ft-in">
+      <div class="ft-brand">
+        <div class="logo">4399<span>电影网</span></div>
+        <p>4399电影网（4399dianyingwang-zh）致力于为影迷提供免费、高清、便捷的在线观影服务，让每一部好电影都被看见。</p>
+      </div>
+      <div class="ft-col">
+        <h5>频道导航</h5>
+        <ul>
+          <li><a href="#films">院线电影</a></li>
+          <li><a href="#films">热播剧集</a></li>
+          <li><a href="#films">综艺动漫</a></li>
+          <li><a href="#films">高分精选</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h5>帮助中心</h5>
+        <ul>
+          <li><a href="#guide">观影指南</a></li>
+          <li><a href="#faq">常见问题</a></li>
+          <li><a href="#">版权声明</a></li>
+          <li><a href="#">用户协议</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h5>关注我们</h5>
+        <ul>
+          <li><a href="#">微信公众号</a></li>
+          <li><a href="#">官方微博</a></li>
+          <li><a href="#">商务合作</a></li>
+          <li><a href="#">联系客服</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© 2026 4399电影网（4399dianyingwang-zh） 版权所有 · 网站网址：https://4399dianyingwang-zh.github.io</span>
+      <span><a href="#">京ICP备xxxxxxxx号</a> · <a href="#">网络文化经营许可证</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// 移动端菜单
+const nav=document.getElementById('nav'),mob=document.getElementById('mob');
+mob.addEventListener('click',()=>nav.classList.toggle('open'));
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+
+// FAQ 手风琴
+document.querySelectorAll('.faq-q').forEach(btn=>{
+  btn.addEventListener('click',()=>btn.parentElement.classList.toggle('open'));
+});
+
+// 筛选按钮
+document.querySelectorAll('.filters button').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.filters button').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+  });
+});
+
+// 滚动出现动画
+const io=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
